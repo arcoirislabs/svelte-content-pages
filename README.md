@@ -1,5 +1,7 @@
 # svelte-content-pages
 
+[![npm version](https://badge.fury.io/js/svelte-content-pages.svg)](https://badge.fury.io/js/svelte-content-pages)
+
 Svelte Element to do easy Content Switching. The inspiration came from [<iron-pages>](https://www.webcomponents.org/element/@polymer/iron-pages)
 
 ## How to use
