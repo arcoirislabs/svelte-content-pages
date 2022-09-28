@@ -5,13 +5,11 @@
     let pagesList;
     
     import {onMount} from "svelte";
-    onMount(function (params) {
+    onMount(function () {
         
         for (let index = 0; index < pagesList.children.length; index++) {
             const element = pagesList.children[index];
-            console.log(index , page , fallbackSelection);
-            if (index == 0 && page == null && fallbackSelection !== undefined) {
-                
+            if (index == 0 && page == null && page.length == 0 && fallbackSelection !== undefined) {
                 element.style.display = "block";
             }else{
                 element.style.display = "none";
@@ -21,21 +19,20 @@
     });
     function showPage(page) {
         
-        if (page != null && pagesList !=undefined) {
+        if (page != null && page.length > 0 && pagesList !=undefined) {
             for (let index = 0; index < pagesList.children.length; index++) {
                 const element = pagesList.children[index];
                 element.style.display = "none";
             };
-            //console.log(pagesList.querySelector('.page[page='+page+']'))
+            
             pagesList.querySelector('[page='+page+']').style.display = "block";
         }else{
             
         }
     }
     $: showPage(page)
-    //page = capitalize(page);
+    
 </script>
-
 
 <div class="pages" bind:this="{pagesList}" current-page={page} style="--current-page:{page}">
     <slot></slot>
