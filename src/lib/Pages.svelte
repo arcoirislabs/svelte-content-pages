@@ -1,7 +1,7 @@
 <script>
     
     export let page;
-    export let fallbackSelection;
+    export let fallbackSelection = "";
     let pagesList;
     
     import {onMount} from "svelte";
@@ -24,8 +24,14 @@
                 const element = pagesList.children[index];
                 element.style.display = "none";
             };
+            if (pagesList.querySelector('[page='+page+']') !== null) {
+                pagesList.querySelector('[page='+page+']').style.display = "block";
+            } else {
+                if (fallbackSelection !== undefined && fallbackSelection.length > 0) {
+                    pagesList.querySelector('[page='+fallbackSelection+']').style.display = "block";
+                }
+            }
             
-            pagesList.querySelector('[page='+page+']').style.display = "block";
         }else{
             
         }
@@ -34,7 +40,7 @@
     
 </script>
 
-<div class="pages" bind:this="{pagesList}" current-page={page} style="--current-page:{page}">
+<div class="pages" bind:this="{pagesList}" data-current-page={page} style="--current-page:{page}">
     <slot></slot>
 </div>
 
